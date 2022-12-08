@@ -1,4 +1,29 @@
+import axios from "axios"
+
+import { useRef, useState } from "react"
+
 export default function Login(){
+
+    const [message, setMessage] = useState('')
+
+    let username = useRef()
+    let password = useRef()
+
+    let onLogin = async() => {
+        try {
+            // Step1. Validasi inputan jangan ada yg kosong
+
+            // Step2. Check apakah username dan password nya ada?
+            let response = await axios.get(`http://localhost:5000/users?username=${username.current.value}&password=${password.current.value}`)
+            
+            if(response.data.length === 0) throw { message: 'Account Not Found' }
+            alert('Login Success')
+            setMessage('')
+        } catch (error) {
+            setMessage(error.message)
+        }
+    }
+
     return(
         <div  className="flex flex-col items-center py-20">
         <h1 className="my-fs-15 my-grey mt-5 font-bold">
@@ -12,13 +37,15 @@ export default function Login(){
                 Login Account
             </h1>
             <div>
-                <input type='text' placeholder='Input you email' className='py-2 px-2 w-100 rounded-md' style={{border: '1px solid grey', width: '100%'}} />
+                <input ref={username} type='text' placeholder='Input you username' className='py-2 px-2 w-100 rounded-md' style={{border: '1px solid grey', width: '100%'}} />
             </div>
             <div>
-                <input type='text' placeholder='Input you password' className='py-2 px-2 w-100 rounded-md mt-3' style={{border: '1px solid grey', width: '100%'}} />
+                <input ref={password} type='text' placeholder='Input you password' className='py-2 px-2 w-100 rounded-md mt-3' style={{border: '1px solid grey', width: '100%'}} />
             </div>
-     
-            <button className='bg-white text-black border border-black px-3 py-3 mt-3 rounded-full self-end'>
+            <div>
+                {message}
+            </div>
+            <button onClick={onLogin} className='bg-white text-black border border-black px-3 py-3 mt-3 rounded-full self-end'>
                 Login
             </button>
         </div>

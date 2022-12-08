@@ -67,3 +67,10 @@ export default function Register(){
     </div>
     )
 }
+
+
+
+// Tugas Weekend
+// Validasi username & email user. Pastikan belum ter-register di dalam db.json
+// Apabila sudah ter-register, tampilkan message error
+// Apabila belum ter-register, simpan datanya ke dalam db.json
