@@ -2,27 +2,15 @@ import axios from "axios"
 
 import { useRef, useState } from "react"
 
-export default function Login(){
+import { useNavigate } from "react-router-dom";
+
+export default function Login(props){
 
     const [message, setMessage] = useState('')
 
     let username = useRef()
     let password = useRef()
-
-    let onLogin = async() => {
-        try {
-            // Step1. Validasi inputan jangan ada yg kosong
-
-            // Step2. Check apakah username dan password nya ada?
-            let response = await axios.get(`http://localhost:5000/users?username=${username.current.value}&password=${password.current.value}`)
-            
-            if(response.data.length === 0) throw { message: 'Account Not Found' }
-            alert('Login Success')
-            setMessage('')
-        } catch (error) {
-            setMessage(error.message)
-        }
-    }
+    const navigate = useNavigate();
 
     return(
         <div  className="flex flex-col items-center py-20">
@@ -45,7 +33,7 @@ export default function Login(){
             <div>
                 {message}
             </div>
-            <button onClick={onLogin} className='bg-white text-black border border-black px-3 py-3 mt-3 rounded-full self-end'>
+            <button onClick={() => props.myFunc.onLogin(username.current.value, password.current.value)} className='bg-white text-black border border-black px-3 py-3 mt-3 rounded-full self-end'>
                 Login
             </button>
         </div>

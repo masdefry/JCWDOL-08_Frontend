@@ -3,6 +3,8 @@ import './register.css'
 import { useRef, useState } from 'react';
 import axios from 'axios';
 
+import toast, { Toaster } from 'react-hot-toast';
+
 export default function Register(){
 
     const [message, setMessage] = useState('')
@@ -21,9 +23,18 @@ export default function Register(){
             // Step2. Validasi 
             if(!inputUsername || !inputEmail || !inputPassword) throw { message: 'Data Not Complete!' }
 
+            // Step3.0. Kita get terlebih dahulu datanya, pastikan belum terdaftar di json
+            let checkUsername = await axios.get(`http://localhost:5000/users?username=${inputUsername}`) // ?username=username req query url
+            let checkEmail = await axios.get(`http://localhost:5000/users?email=${inputEmail}`)
+
+            if(checkUsername.data.length > 0 || checkEmail.data.length > 0) throw { message: 'Account Already Exist' }
+
             // Step3. Simpan data user ke dalam json
-            await axios.post('http://localhost:5000/usersss', {username: inputUsername, email: inputEmail, password: inputPassword})
-            alert('Register Success!')
+            await axios.post('http://localhost:5000/users', {username: inputUsername, email: inputEmail, password: inputPassword})
+            username.current.value = ''
+            email.current.value = ''
+            password.current.value = ''
+            toast('Register Success');
             setMessage('')
         } catch (error) { // error = { message: 'Data Not Complete!' }
             setMessage(error.message)
@@ -64,6 +75,7 @@ export default function Register(){
                 Register
             </button>
         </div>
+        <Toaster />
     </div>
     )
 }
