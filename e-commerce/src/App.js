@@ -4,6 +4,7 @@ import Navbar
  import Home from './pages/home';
  import Register from './pages/register'
  import Login from './pages/login'
+ import Menu from "./pages/menu";
 
  import { Routes, Route } from 'react-router-dom'
 
@@ -54,8 +55,9 @@ function App() {
       <Navbar myUsername={{username}} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/register' element={username? navigate('/') : <Register />} />
-        <Route path='/login' element={username? navigate('/') : <Login myFunc={{onLogin}} />} />
+        <Route path='/menu' element={<Menu />} />
+        {/* <Route path='/register' element={username? navigate('/') : <Register />} />
+        <Route path='/login' element={username? navigate('/') : <Login myFunc={{onLogin}} />} /> */}
       </Routes>
     </>
   );
