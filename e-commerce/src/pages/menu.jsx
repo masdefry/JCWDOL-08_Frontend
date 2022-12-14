@@ -9,10 +9,19 @@ export default function Menu(){
 
     let onGetData = async() =>{
         try {
-            let responseProducts = await axios.get(`http://localhost:5000/products`) 
+            let responseProducts = await axios.get(`http://localhost:5000/products?category=0`) 
             let responseCategory = await axios.get(`http://localhost:5000/category`)
             setData(responseProducts.data)
             setCategory(responseCategory.data)
+        } catch (error) {
+            
+        }
+    }
+
+    let onFiltering = async(index) => {
+        try {
+            let responseProducts = await axios.get(`http://localhost:5000/products?category=${index}`)
+            setData(responseProducts.data)
         } catch (error) {
             
         }
@@ -40,7 +49,7 @@ export default function Menu(){
     let mapCategory = () => {
         return category.map((value, index) => {
             return(
-                <div className='my-fs-18 mt-3 ml-2'>{value}</div>
+                <div onClick={() => onFiltering(index)} className='my-fs-18 mt-3 ml-2'>{value}</div>
             )
         })
     }
