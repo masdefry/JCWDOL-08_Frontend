@@ -7,22 +7,10 @@
       "id": 1
     },
     {
-      "username": "ryan01",
-      "email": "ryan01@gmail.com",
+      "username": "nayrrr",
+      "email": "nayrrr@gmail.com",
       "password": "abc123",
-      "id": 5
-    },
-    {
-      "username": "ryan02",
-      "email": "ryan02@gmail.com",
-      "password": "abc123",
-      "id": 6
-    },
-    {
-      "username": "ryan03",
-      "email": "ryan03@gmail.com",
-      "password": "abc123",
-      "id": 7
+      "id": 2
     }
   ]
 }

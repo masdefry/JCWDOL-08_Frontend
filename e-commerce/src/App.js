@@ -10,7 +10,7 @@ import Navbar
  import axios from "axios"
 
  import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
@@ -26,18 +26,36 @@ function App() {
         let response = await axios.get(`http://localhost:5000/users?username=${inputUsername}&password=${inputPassword}`)
         if(response.data.length === 0) throw { message: 'Account Not Found' }
         setUsername(response.data[0].username)
+        localStorage.setItem("id", response.data[0].id)
         navigate("/");
     } catch (error) {
     }
   }
+
+  let keepLogin = async() => {
+    try {
+      // Step-1 Untuk mengecek user sudah pernah login atau belum, dilihat dari local storage nya
+      let getId = parseInt(localStorage.getItem("id"))
+
+      // Step-2 Setelah mendapatkan id nya, kita cek id tersebut di dalam database untuk mendapatkan username nya
+      let response = await axios.get(`http://localhost:5000/users/${getId}`)
+      setUsername(response.data.username)
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(() => {
+    keepLogin()
+  }, [])
 
   return (
     <>
       <Navbar myUsername={{username}} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login myFunc={{onLogin}} />} />
+        <Route path='/register' element={username? navigate('/') : <Register />} />
+        <Route path='/login' element={username? navigate('/') : <Login myFunc={{onLogin}} />} />
       </Routes>
     </>
   );
