@@ -5,6 +5,7 @@ import Navbar
  import Register from './pages/register'
  import Login from './pages/login'
  import Menu from "./pages/menu";
+ import DetailProduct from './pages/detail';
 
  import { Routes, Route } from 'react-router-dom'
 
@@ -56,6 +57,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/menu' element={<Menu />} />
+        <Route path='/detail/:id' element={<DetailProduct />} />
         {/* <Route path='/register' element={username? navigate('/') : <Register />} />
         <Route path='/login' element={username? navigate('/') : <Login myFunc={{onLogin}} />} /> */}
       </Routes>

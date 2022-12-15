@@ -37,7 +37,7 @@ export default function Menu(){
                 return (
                     <div className='flex items-center mt-3'>
                         <div>
-                            <Link to='/'>
+                            <Link to={`/detail/${value.id}`}>
                                 <img src={value.image} style={{ width:'100px', height:'100px' }} className='rounded-full' />
                             </Link>
                         </div>
