@@ -28,22 +28,27 @@ export default function Menu(){
     }
 
     let mapProducts = () => {
-        return data.map((value, index) => {
-            return (
-                <div className='flex items-center mt-3'>
-                    <div>
-                        <Link to='/'>
-                            <img src={value.image} style={{ width:'100px', height:'100px' }} className='rounded-full' />
-                        </Link>
-                    </div>
-                    <div className='pl-3'>
-                        <h1 className='text-xl font-bold'>
-                            {value.name}
-                        </h1>
-                    </div>
+        return data.length === 0?
+                <div>
+                    Products not Found
                 </div>
-            )
-        })
+        :
+            data.map((value, index) => {
+                return (
+                    <div className='flex items-center mt-3'>
+                        <div>
+                            <Link to='/'>
+                                <img src={value.image} style={{ width:'100px', height:'100px' }} className='rounded-full' />
+                            </Link>
+                        </div>
+                        <div className='pl-3'>
+                            <h1 className='text-xl font-bold'>
+                                {value.name}
+                            </h1>
+                        </div>
+                    </div>
+                )
+            })
     }
 
     let mapCategory = () => {
