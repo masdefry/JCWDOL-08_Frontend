@@ -13,13 +13,11 @@
       "id": 2
     }
   ],
-
   "category": [
     "Drink",
     "Snack",
     "Food"
   ],
-  
   "products": [
     {
       "id": 1,
@@ -722,22 +720,18 @@
       "image": "https://globalassets.starbucks.com/assets/0612427b8d134a098b6f7457fdac44d2.jpg?impolicy=1by1_medium_630"
     }
   ],
-  "cart": [
+  "carts": [
     {
       "productsId": 1,
       "indexSize": 0,
-      "indexTopping": 0,
-      "indexSugar": 0,
-      "quantity": 1,
+      "quantity": 2,
       "usersId": 1,
       "id": 1
     },
     {
       "productsId": 2,
       "indexSize": 0,
-      "indexTopping": 0,
-      "indexSugar": 0,
-      "quantity": 1,
+      "quantity": 2,
       "usersId": 1,
       "id": 2
     }
