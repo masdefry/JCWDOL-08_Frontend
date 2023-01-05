@@ -4,7 +4,7 @@ export const FetchApi = () => {
     return async (dispatch) => {
         try {
             let response = await axios.get('https://jsonplaceholder.typicode.com/users')
-           
+           await axios.get('/products')
             dispatch({
                 type: 'GET_DATA_SUCCESS',
                 payload: response.data // [{}]
@@ -14,6 +14,16 @@ export const FetchApi = () => {
                 type: 'GET_DATA_ERROR',
                 payload: error.message // 'Network Error'
             })
+        }
+    }
+}
+
+export const GetProducts = () => {
+    return async(dispatch) => {
+        try {
+            await axios.get('/products')
+        } catch (error) {
+            
         }
     }
 }

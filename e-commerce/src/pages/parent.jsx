@@ -5,9 +5,9 @@ import Child2 from "../components/child2"
 import { useState, useEffect } from 'react';
 
 // Import Actions Redux
-import { FetchApi } from './../redux/actions/dataAction';
+import { FetchApi, GetProducts } from './../redux/actions/dataAction';
 
-function Parent({FetchApi, dataComponent}){
+function Parent({FetchApi, dataComponent, GetProducts}){
 
     let [nameFromChild1, setNameFromChild1] = useState('')
 
@@ -17,6 +17,7 @@ function Parent({FetchApi, dataComponent}){
 
     useEffect(() => {
         FetchApi()
+        GetProducts()
     }, [])
 
     return(
