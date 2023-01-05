@@ -14,6 +14,7 @@ import Navbar
 
  import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import Parent from "./pages/parent";
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
         <Route path='/mentoring' element={<Mentoring />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login myFunc={{onLogin}} />} />
+        <Route path='/parent' element={<Parent />} />
       </Routes>
     </>
   );
