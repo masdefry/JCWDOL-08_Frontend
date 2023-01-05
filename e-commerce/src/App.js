@@ -6,6 +6,7 @@ import Navbar
  import Login from './pages/login'
  import Menu from "./pages/menu";
  import DetailProduct from './pages/detail';
+ import Mentoring from './pages/mentoring';
 
  import { Routes, Route } from 'react-router-dom'
 
@@ -58,8 +59,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/menu' element={<Menu />} />
         <Route path='/detail/:id' element={<DetailProduct />} />
-        {/* <Route path='/register' element={username? navigate('/') : <Register />} />
-        <Route path='/login' element={username? navigate('/') : <Login myFunc={{onLogin}} />} /> */}
+        <Route path='/mentoring' element={<Mentoring />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login myFunc={{onLogin}} />} />
       </Routes>
     </>
   );
